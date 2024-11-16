@@ -27,7 +27,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   hem kendime hem de başkalarına yardımcı olmaktır. 
   Kısacası, beynimin yedekleme alanı!
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://cemtopkaya.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://cemtopkaya.com/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: cemtopkaya
 github_username:  cemtopkaya
 
@@ -35,7 +35,7 @@ github_username:  cemtopkaya
 theme: minima
 plugins:
   - jekyll-feed
-
+BASE_PATH : /RICENCODE
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
