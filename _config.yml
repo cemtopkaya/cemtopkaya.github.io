@@ -35,7 +35,28 @@ github_username:  cemtopkaya
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-tagging
+  - jekyll-seo-tag
+  # - jekyll-sitemap
+  # - jekyll-paginate
+
+# permalink: /tags/:tag/:title.html
+
+# Aşağıdaki linkin url çıktısı /yil/ay/gun/baslik.html şeklinde olur.
+# http://127.0.0.1:4000/2024/10/23/Spring-Notlar%C4%B1m/
+permalink: /:year/:month/:day/:title/
+
+# Aşağıdaki linkin url çıktısı /kategori/baslik.html şeklinde olur.
+# http://127.0.0.1:4000/spring/Spring-Notlar%C4%B1m/
+# permalink: /:categories/:title/
+
 BASE_PATH : /RICENCODE
+
+# TODO: https://github.com/pattex/jekyll-tagging
+tag_page_layout: tag_page
+tag_page_dir: tag
+tag_permalink_style: pretty
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

@@ -1,4 +1,10 @@
-# Spring Notlarım
+---
+layout: post
+title:  "Spring Notlarım"
+date:   2024-10-23 11:57:24 +0000
+categories: Spring
+tags: Coding Spring Microservice
+---
 
 “Spring Cloud OpenFeign” bir Java kütüphanesidir ve Spring Boot uygulamalarında kullanılan bir teknoloji aracıdır. Bu teknoloji, mikro servis mimarisinde servislerin birbiriyle iletişim kurmasını kolaylaştırmak için tasarlanmıştır. Bu, geliştiricilerin daha az kod yazarak daha etkili ve bakımı kolay uygulamalar geliştirmesine olanak tanır.
 
@@ -46,7 +52,7 @@ Maven, Apache Software Foundation tarafından geliştirilen, Java projeleri içi
 
 amacıyla kullanılan yönetim aracıdır. Tüm bu süreçleri **P**roje **N**esne **M**odeli (**POM**) kullanarak tüm yapılandırma bilgilerini merkezi bir yerde toplar.
 
-![](https://cdn-images-1.medium.com/max/3404/1*Y70BIlvAqubx0u-6T6OD3g.png)
+<!-- ![](https://cdn-images-1.medium.com/max/3404/1*Y70BIlvAqubx0u-6T6OD3g.png) -->
 ![alt text]({{ BASE_PATH }}/assets/images/java-proje-dizin-yapisi.png)
 <!-- <img src="{{site.baseurl | prepend: site.url}}assets/images/java-proje-dizin-yapisi.png" alt="Untitled" /> -->
 
@@ -63,7 +69,8 @@ Maven’da üç ana yaşam döngüsü vardır:
 
 1. **Site Yaşam Döngüsü:** Proje belgelerini ve raporlarını oluşturur.
 
-![](https://cdn-images-1.medium.com/max/2000/1*_4dxB9hGiDyRxW8D1UQKfQ.png)
+<!-- ![](https://cdn-images-1.medium.com/max/2000/1*_4dxB9hGiDyRxW8D1UQKfQ.png) -->
+![alt text]({{ BASE_PATH }}/assets/images/maven-life-cycle.png)
 
 Her yaşam döngüsü, belirli aşamalardan oluşur. Örneğin, default yaşam döngüsü aşağıdaki aşamaları içerir:
 
@@ -81,7 +88,8 @@ Her yaşam döngüsü, belirli aşamalardan oluşur. Örneğin, default yaşam d
 
 **Her aşamanın bir hedefi vardır ve bu hedefleri eklentilerle gerçekleştiririz.**
 
-![](https://cdn-images-1.medium.com/max/2000/1*MeUIJIBI_UTaxLvoeTA_lA.png)
+<!-- ![](https://cdn-images-1.medium.com/max/2000/1*MeUIJIBI_UTaxLvoeTA_lA.png) -->
+![alt text]({{ BASE_PATH }}/assets/images/maven-life-cycle-with-plugins.png)
 
 Her aşama, belirli görevlerle ilişkilendirilmiştir. Örneğin, compile aşaması compiler:compile görevini çalıştırır.
 
@@ -402,11 +410,13 @@ Bu yapı sayesinde, her bağımlılığın hangi repository’den çekileceğini
 
 İndirilen paketler varsayılan olaran ~/.m2/repository dizininde saklanır:
 
-![](https://cdn-images-1.medium.com/max/2000/1*yFDmvybUrTYj5oHhLkF5mw.png)
+<!-- ![](https://cdn-images-1.medium.com/max/2000/1*yFDmvybUrTYj5oHhLkF5mw.png) -->
+![alt text]({{ BASE_PATH }}/assets/images/m2_repository.png)
 
 Ancak `~/.m2/settings.xml` dosyasında farklı bir dizini belirtebilirsiniz:
 
-![](https://cdn-images-1.medium.com/max/2000/1*CLTvppKVS2SviSD_Kts9gQ.png)
+<!-- ![](https://cdn-images-1.medium.com/max/2000/1*CLTvppKVS2SviSD_Kts9gQ.png) -->
+![alt text]({{ BASE_PATH }}/assets/images/m2_settings._xml.png)
 
 ```xml
     <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
@@ -416,7 +426,8 @@ Ancak `~/.m2/settings.xml` dosyasında farklı bir dizini belirtebilirsiniz:
     </settings>
 ```
 
-![](https://cdn-images-1.medium.com/max/2000/1*GaKjUFAMzxClRUzS8YZO9A.png)
+<!-- ![](https://cdn-images-1.medium.com/max/2000/1*GaKjUFAMzxClRUzS8YZO9A.png) -->
+![alt text]({{ BASE_PATH }}/assets/images/local_remote_repository.png)
 
 ```xml
     <project xmlns="http://maven.apache.org/POM/4.0.0"

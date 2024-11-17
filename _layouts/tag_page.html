@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<div class="tag-page">
+  <h1>{{ page.tag }} ile ilgili yazılar</h1>
+
+  <div class="post-list">
+    {% for post in page.posts %}
+      <article class="post-item">
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        <time datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date: "%d.%m.%Y" }}
+        </time>
+      </article>
+    {% endfor %}
+  </div>
+</div>

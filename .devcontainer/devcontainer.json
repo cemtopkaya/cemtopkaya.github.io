@@ -9,7 +9,8 @@
 			"extensions": [
 				"GitHub.copilot-chat",
 				"GitHub.copilot",
-				"telesoho.vscode-markdown-paste-image"
+				"telesoho.vscode-markdown-paste-image",
+				"hanskre.markdown-execute"
 			]
 		}
 	}

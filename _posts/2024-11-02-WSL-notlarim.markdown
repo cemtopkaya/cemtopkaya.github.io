@@ -1,8 +1,10 @@
 ---
 layout: post
+author: Cem Topkaya
 title:  "WSL Notlarım"
 date:   2024-11-02 17:57:24 +0000
 categories: wsl
+tags: wsl openstack
 ---
 # WSL Notlarım.
 
