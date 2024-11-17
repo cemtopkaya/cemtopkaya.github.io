@@ -493,10 +493,10 @@ Arayüzün altına girişler ekleyerek, IPv4 adreslerine benzer şekilde ek IPv6
 
 Her giriş iki bölümden oluşur: _IP adresi_ ve _alt ağ öneki_.
 
--   \[ip-adresi\] : Statik olarak yapılandırılacak IP adresi. Adres, yukarıda gösterildiği gibi IPv6 (örneğin, ) veya IPv4 olabilir.`2001:db8:e001:1b8c::2`
+-   \[ip-adresi\] : Statik olarak yapılandırılacak IP adresi. Adres, yukarıda gösterildiği gibi IPv6 (örneğin, ) veya IPv4 olabilir `2001:db8:e001:1b8c::2`
 -   \[prefix\] : Adres için alt ağ öneki. Bu, eklediğiniz IPv6 adresinin türüne bağlıdır:  
-    — IPv6 SLAAC adresi: (önceki bölümde gösterildiği gibi, bunu SLAAC aracılığıyla otomatik olarak yapılandırmanız önerilir).`/128`  
-    — Bir aralıktaki IPv6 adresi: veya (aralığın boyutuna bağlı olarak).`/64``/56`
+    — IPv6 SLAAC adresi: (önceki bölümde gösterildiği gibi, bunu SLAAC aracılığıyla otomatik olarak yapılandırmanız önerilir) `/128`  
+    — Bir aralıktaki IPv6 adresi: veya (aralığın boyutuna bağlı olarak) `/64` `/56`
 
 ## DNS çözücülerini değiştirme
 
