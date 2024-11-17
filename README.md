@@ -34,4 +34,8 @@ Konsolda eklentinin kurulumu için komutunu çalıştırırız:
 
 ```sh
 bundle install 
+
+# veya 
+
+bundle exec jekyll serve --baseurl=""
 ```
