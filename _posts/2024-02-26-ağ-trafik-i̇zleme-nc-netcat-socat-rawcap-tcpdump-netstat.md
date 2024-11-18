@@ -23,7 +23,7 @@ Tcpdump, aynı işi yapan hem Linux hem Windows üstünde koşabilen bir başka 
 
 *   `-` Argümanıyla yakaladığı trafiği standart çıktıya (standard output yani terminale veya `stdOut` çıktısını yönlendirdiğiniz yere) aktarabilirsiniz. _Anlaşılır bir çıktı üretmez ama hareketi görebilirsiniz._
 
-```
+```shell
 c:\\> RawCap.exe -q 127.0.0.1 -
 ```
 
@@ -37,7 +37,7 @@ c:\\> RawCap.exe -q 127.0.0.1 -
 
 *   Yakaldığı trafiği Wireshark uygulamasına | operatörüyle hemen geçirebilir
 
-```
+```shell
 c:\\> RawCap.exe -q 127.0.0.1 - | Wireshark.exe -i - -k
 ```
 
@@ -52,7 +52,7 @@ tcpdump ve netcat
 
 tcpdump ile ağ cihazlarını listeleyelim
 
-```
+```shell
 $ tcpdump.exe -D
 ```
 
@@ -83,7 +83,7 @@ Ref: [www.tecmint.com](https://www.tecmint.com/find-out-which-process-listening-
 
 Önce netstat yüklü olmalı:
 
-```
+```shell
 $ sudo yum install net-tools    #RHEL/CentOS   
 $ sudo apt install net-tools    #Debian/Ubuntu  
 $ sudo dnf install net-tools    #Fedora 22+
@@ -91,7 +91,7 @@ $ sudo dnf install net-tools    #Fedora 22+
 
 Şimdi portları listeleyebiliriz:
 
-```
+```shell
 $ netstat -ltnp | grep -w ':80'
 ```
 
