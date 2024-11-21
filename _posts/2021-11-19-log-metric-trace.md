@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Http 2 Notlarım"
+title:  "Log — Metric — Trace"
 date:   2021-11-29 11:57:24 +0000
 categories: log metric trace
 tags: log metric trace
