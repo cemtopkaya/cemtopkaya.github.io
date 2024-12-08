@@ -927,14 +927,77 @@ function calculateTotalAboveThreshold(dataList, threshold) {
 
 Uncle Bob'un "Fonksiyonlar" (Functions) başlığı için temel prensipler:
 
-1. Küçük Fonksiyonlar
-2. Tek Sorumluluk İlkesi
-3. Az Parametre
+1. Fonksiyonlar küçük olmalı
+2. Tek Sorumluluk İlkesi (Her fonksiyon tek bir işi yapmalı)
+3. Parametre sayısı minimize edilmeli (Az Parametre)
 4. Yan Etki Olmayan Fonksiyonlar
-5. Açıklayıcı İsimler
+5. Fonksiyon isimleri açıklayıcı olmalı
 6. DRY (Don't Repeat Yourself) Prensibi
+7. Kodun okunabilirliği ve bakımı ön planda tutulmalı
 
-Aşağıda Clean Code ve fonksiyonel programlama prensiplerini test eden ve iş görüşmelerinde kullanılabilecek kod sorularını hazırladım:
+Uncle Bob'un (Robert C. Martin) Clean Code kitabındaki "Fonksiyonlar" bölümü ile fonksiyonel programlama paradigması arasındaki kesişimleri siz de fark etmiş olabilirsiniz. 
+
+İşte bu kesişim noktalarını ve ilgili kavramları detaylandıralım:
+
+1. Pure Functions (Saf Fonksiyonlar):
+   - Uncle Bob'un temiz kod prensiplerine göre, iyi bir fonksiyon yan etki içermemeli ve öngörülebilir davranmalıdır.
+   - Fonksiyonel programlamadaki "pure function" tanımıyla birebir örtüşür.
+   - Aynı girdi için her zaman aynı çıktıyı üreten, dış durumdan bağımsız fonksiyonlar.
+
+2. High Order Functions (Üst Düzey Fonksiyonlar):
+   - Parametre olarak başka fonksiyonları alabilen veya fonksiyon döndürebilen fonksiyonlar.
+   - Clean Code prensiplerine göre, fonksiyonların tek bir işi yapması ve modüler olması gerektiği fikriyle uyumlu.
+   - Kod tekrarını azaltma ve abstraksiyonu artırma potansiyeli sağlar.
+
+3. Immutability (Değişmezlik):
+   - Uncle Bob'un kod kalitesi yaklaşımı, durumun değiştirilmesini minimize etmeyi önerir.
+   - Fonksiyonel programlamadaki immutability konseptiyle doğrudan ilişkili.
+   - Veri yapılarının değişmez olması, hata olasılığını ve yan etkileri azaltır.
+
+Örnek bir kod senaryosu ile bu kavramları birleştirebiliriz:
+
+```python
+# Pure Function örneği
+def calculate_area(width, height):
+    return width * height
+
+# High Order Function örneği
+def apply_operation(func, value):
+    return func(value)
+
+# Immutability örneği
+def add_to_list(original_list, item):
+    return original_list + [item]  # Yeni bir liste oluşturur
+```
+
+Kesişen diğer yazılım geliştirme kavramları:
+- Declarative Programming
+- Referential Transparency
+- Function Composition
+- Recursion
+- Lazy Evaluation
+
+Bu kavramlar, Uncle Bob'un Clean Code felsefesi, Martin Fowler'ın yazılım mimarisi yaklaşımı ve Kent Beck'in test odaklı geliştirme (TDD) prensipleriyle doğrudan ilişkilidir.
+
+Örnek Soru 1: Pure function neden önemlidir?
+- Test edilebilirlik artar
+- Yan etkiler minimize edilir
+- Kod güvenilirliği ve tahmin edilebilirliği artar
+
+Örnek Soru 2: High order function ne işe yarar?
+- Kod tekrarını azaltır
+- Daha esnek ve modüler kod yapıları sağlar
+- Fonksiyonları parametre olarak geçebilme imkanı verir
+
+
+Her sorunun çözümü, yazılım geliştirmede modern yaklaşımların önemini vurgular: *modülerlik*, *öngörülebilirlik* ve *bakım kolaylığı*.
+
+
+Aşağıdaki sorular:
+- Fonksiyonel programlama prensiplerini anlama
+- Clean Code prensiplerine uygun kod yazma
+- Yan etkileri minimize etme
+- Esnek ve yeniden kullanılabilir kod yazma yeteneklerini test eder
 
 1. Pure Function Sorusu (Java):
 ```java
@@ -1073,13 +1136,6 @@ public class DataProcessor {
 - Yan etkiler minimize edildi
 - Fonksiyon kompozisyonu uygulandı
 
-Bu sorular, adaylara:
-- Fonksiyonel programlama prensiplerini anlama
-- Clean Code prensiplerine uygun kod yazma
-- Yan etkileri minimize etme
-- Esnek ve yeniden kullanılabilir kod yazma yeteneklerini test eder
-
-Her sorunun çözümü, yazılım geliştirmede modern yaklaşımların önemini vurgular: modülerlik, öngörülebilirlik ve bakım kolaylığı.
 
 
 Python Örneği:
@@ -1226,15 +1282,7 @@ class OrderProcessor {
 }
 ```
 
-Temel Prensipler:
-1. Her fonksiyon tek bir işi yapmalı
-2. Fonksiyonlar küçük olmalı
-3. Parametre sayısı minimize edilmeli
-4. Fonksiyon isimleri açıklayıcı olmalı
-5. Yan etkilerden kaçınılmalı
-6. Kodun okunabilirliği ve bakımı ön planda tutulmalı
 
-İş Görüşmesi Sorusu Örneği:
 ```javascript
 // Soru: Bu fonksiyonu Uncle Bob'un fonksiyon prensipleri açısından nasıl geliştirebilirsiniz?
 function process(d, t) {
