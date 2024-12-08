@@ -30,8 +30,10 @@ Robert C. Martin'in (Uncle Bob) "Clean Code: A Handbook of Agile Software Crafts
 
 4. Yorum Satırları (Comments)
    - Gereksiz Yorumlardan Kaçınma
-   - Açıklayıcı ve Yararlı Yorumlar
+   - Açıklayıcı ve Yararlı Yorumlar Gerektiğinde Kullanılmalıdır
    - Kod Kendini Açıklamalıdır
+   - Kod Yapısı ve Mimari Yorumları
+   - Hukuki ve Açıklayıcı Yorumların Yeri
 
 5. Kod Formatı (Code Format)
    - Dikey Biçimlendirme
@@ -378,3 +380,877 @@ Bu örnekler:
 - Fonksiyonel ve nesne yönelimli programlama yaklaşımlarını gösterir
 
 Bu örnekler, Uncle Bob'un "Anlamlı İsimler" prensibini açıklamaktadır. İyi bir isimlendirme, kodun okunabilirliğini artırır, diğer geliştiricilerin kodu daha hızlı anlamasına yardımcı olur ve kodun kendi kendini açıklamasını sağlar.
+
+### Yorumlar
+Uncle Bob'un yorum satırları hakkındaki temel felsefesi şu noktalara dayanır:
+
+1. Kod Kendini Açıklamalıdır
+2. Gereksiz Yorumlardan Kaçınılmalıdır
+3. Açıklayıcı Yorumlar Gerektiğinde Kullanılmalıdır
+4. Kod Yapısı ve Mimari Yorumları
+5. Hukuki ve Açıklayıcı Yorumların Yeri
+
+
+Java için bu felsefeyi yansıtan soru ve cevaplar:
+
+1. Mimari ve Açıklayıcı Yorum Sorusu:
+```java
+// Kötü Örnek:
+public class UserService {
+    // User operations will be here
+    public void createUser() {
+        // some code
+    }
+}
+
+// Gelişmiş Çözüm:
+/**
+ * Kullanıcı yönetimi için merkezi servis sınıfı.
+ * 
+ * Bu sınıf, kullanıcı yaşam döngüsü operasyonlarını 
+ * yönetir ve güvenlik katmanını içerir.
+ * 
+ * @since 1.0
+ * @author DevTeam
+ */
+public class UserService {
+    /**
+     * Yeni kullanıcı hesabı oluşturur.
+     * 
+     * Güvenlik kontrolleri ve validasyon işlemlerini içerir.
+     * 
+     * @param user Oluşturulacak kullanıcı nesnesi
+     * @throws UserValidationException Geçersiz kullanıcı bilgilerinde
+     */
+    public void createUser(User user) {
+        // Detaylı güvenlik ve validasyon kontrolleri
+        validateUser(user);
+        // Kullanıcı oluşturma işlemleri
+    }
+}
+
+// Açıklama:
+// - Sınıf ve metot seviyesinde mimari açıklamalar
+// - JavaDoc standardında belgelendirme
+// - Kod yapısını ve amacını açıklayan yorumlar
+```
+
+2. Kod Kokusu ve Yorum İlişkisi Sorusu:
+```java
+public class DataProcessor {
+    // Kötü Örnek:
+    public int process(int x) {
+        // Eğer x 10'dan küçükse
+        if (x < 10) {
+            // x'i 2 ile çarp
+            return x * 2;
+        }
+        // Değilse 3 ekle
+        return x + 3;
+    }
+
+    // Gelişmiş Çözüm:
+    public int transformValue(int inputValue) {
+        return inputValue < THRESHOLD 
+            ? multiplySmallValue(inputValue) 
+            : incrementLargeValue(inputValue);
+    }
+
+    private static final int THRESHOLD = 10;
+
+    private int multiplySmallValue(int value) {
+        return value * 2;
+    }
+
+    private int incrementLargeValue(int value) {
+        return value + 3;
+    }
+}
+
+// Açıklama:
+// - Gereksiz yorumlar yerine açıklayıcı metot ve değişken isimleri
+// - Küçük, odaklanmış metodlar
+// - Sabit değerler için açık tanımlamalar
+// - Yorumlar yerine kodun kendini açıklaması
+```
+
+3. Hukuki ve Açıklayıcı Yorum Örneği:
+```java
+/**
+ * Apache Lisans Bildirimi ve Telif Hakkı Yorumu
+ * 
+ * Bu sınıf, şirket içi veri işleme standartlarını uygular.
+ * Tüm hakları saklıdır.
+ */
+public class SecureDataProcessor {
+    // Kod içinde açıklayıcı yorumların kullanım örneği
+    
+    /**
+     * Hassas veri işleme metodu.
+     * 
+     * GDPR ve KVKK düzenlemelerine uygun veri anonimleştirme
+     * işlemleri gerçekleştirir.
+     * 
+     * @param sensitiveData İşlenecek hassas veri
+     * @return Anonimleştirilmiş veri
+     * @throws DataProcessingException Veri işleme hatalarında
+     */
+    public String processPersonalData(String sensitiveData) {
+        // Veri anonimleştirme logic'i
+        
+        // Kritik güvenlik kontrolü
+        // Detaylı log mekanizması için açıklayıcı yorum
+        // Sistem güvenliği için kritik kontrol noktası
+        validateDataProcessingRules(sensitiveData);
+        
+        return anonymizeData(sensitiveData);
+    }
+}
+
+// Açıklama:
+// - Hukuki ve yasal düzenlemelere atıf
+// - Kritik kod blokları için açıklayıcı yorumlar
+// - Metot seviyesinde detaylı dokümantasyon
+```
+
+### Kod Kokusu (Code Smell)
+
+Kod Kokusu (Code Smell), yazılım geliştirmede bir kod parçasının kalitesiz veya sorunlu olduğunu gösteren belirtilerdir. Martin Fowler ve Kent Beck tarafından popülerleştirilen bir terimdir. Kod kokusu, kodun muhtemelen yeniden düzenlenmesi (refactoring) gerektiğini işaret eden problemlerdir.
+
+Bazı yaygın Kod Kokusu örnekleri:
+1. Uzun Metotlar
+2. Yinelenen Kod
+3. Büyük Sınıflar
+4. Fazla Karmaşık Koşul Blokları
+5. Sıkı Bağımlılıklar
+6. Yetersiz İsimlendirme
+
+JavaScript için Kod Kokusu örnekleri:
+
+1. Uzun ve Karmaşık Metot Kokusu:
+```javascript
+// Kod Kokusu Örneği:
+function processUserData(userData) {
+    let result = {};
+    
+    // Çok fazla sorumluluk
+    if (userData && userData.name) {
+        result.name = userData.name.toUpperCase();
+        
+        if (userData.age && userData.age > 18) {
+            result.isAdult = true;
+            
+            if (userData.email && userData.email.includes('@')) {
+                result.email = userData.email;
+                
+                // Daha fazla karmaşık kontrol
+                if (userData.subscription) {
+                    result.hasSubscription = true;
+                    // ... daha fazla kontrol
+                }
+            }
+        }
+    }
+    
+    return result;
+}
+
+// Temiz Kod Çözümü:
+class UserDataProcessor {
+    static validateName(name) {
+        return name && typeof name === 'string';
+    }
+    
+    static isAdult(age) {
+        return age > 18;
+    }
+    
+    static isValidEmail(email) {
+        return email && email.includes('@');
+    }
+    
+    static processUserData(userData) {
+        if (!userData) return {};
+        
+        return {
+            name: this.validateName(userData.name) 
+                ? userData.name.toUpperCase() 
+                : null,
+            isAdult: this.isAdult(userData.age),
+            email: this.isValidEmail(userData.email) 
+                ? userData.email 
+                : null,
+            hasSubscription: !!userData.subscription
+        };
+    }
+}
+
+// Açıklama:
+// - Sorumlulukları küçük metodlara böldük
+// - Tek sorumluluk prensibi
+// - Daha net ve okunabilir kod
+// - Test edilebilirlik arttı
+```
+
+2. Yinelenen Kod Kokusu:
+```javascript
+// Kod Kokusu Örneği:
+function calculateSalesTax(price, state) {
+    let tax = 0;
+    
+    if (state === 'NY') {
+        tax = price * 0.08;
+    } else if (state === 'CA') {
+        tax = price * 0.0725;
+    } else if (state === 'TX') {
+        tax = price * 0.0625;
+    }
+    
+    return tax;
+}
+
+function calculateStateTotalSales(sales, state) {
+    let tax = 0;
+    
+    if (state === 'NY') {
+        tax = sales * 0.08;
+    } else if (state === 'CA') {
+        tax = sales * 0.0725;
+    } else if (state === 'TX') {
+        tax = sales * 0.0625;
+    }
+    
+    return tax;
+}
+
+// Temiz Kod Çözümü:
+const TAX_RATES = {
+    NY: 0.08,
+    CA: 0.0725,
+    TX: 0.0625
+};
+
+class TaxCalculator {
+    static calculateTax(amount, state) {
+        const taxRate = TAX_RATES[state] || 0;
+        return amount * taxRate;
+    }
+    
+    static calculateStateTotalSales(sales, state) {
+        return this.calculateTax(sales, state);
+    }
+}
+
+// Açıklama:
+// - Yinelenen kod kaldırıldı
+// - Merkezi vergi oranları tanımlandı
+// - Kod tekrarı önlendi
+// - Bakım kolaylığı sağlandı
+```
+
+3. Büyük ve Karmaşık Sınıf Kokusu:
+```javascript
+// Kod Kokusu Örneği:
+class UserManager {
+    constructor(database) {
+        this.database = database;
+    }
+    
+    createUser(userData) {
+        // Kullanıcı oluşturma
+        // Doğrulama
+        // Log kaydetme
+        // Bildirim gönderme
+        // E-posta doğrulama
+    }
+    
+    updateUser(userData) {
+        // Kullanıcı güncelleme
+        // Doğrulama
+        // Log kaydetme
+        // Bildirim gönderme
+    }
+    
+    deleteUser(userId) {
+        // Kullanıcı silme
+        // Yetkilendirme
+        // Log kaydetme
+    }
+    
+    sendNotification(user) {
+        // Bildirim gönderme
+    }
+    
+    validateUser(userData) {
+        // Kullanıcı doğrulama
+    }
+}
+
+// Temiz Kod Çözümü:
+class UserValidator {
+    static validate(userData) {
+        // Kullanıcı doğrulama
+    }
+}
+
+class UserRepository {
+    constructor(database) {
+        this.database = database;
+    }
+    
+    create(userData) {
+        // Veritabanı işlemleri
+    }
+    
+    update(userData) {
+        // Veritabanı güncelleme
+    }
+    
+    delete(userId) {
+        // Veritabanı silme
+    }
+}
+
+class UserNotificationService {
+    send(user) {
+        // Bildirim gönderme
+    }
+}
+
+class UserManager {
+    constructor(repository, validator, notificationService) {
+        this.repository = repository;
+        this.validator = validator;
+        this.notificationService = notificationService;
+    }
+    
+    createUser(userData) {
+        if (this.validator.validate(userData)) {
+            const user = this.repository.create(userData);
+            this.notificationService.send(user);
+            return user;
+        }
+    }
+}
+
+// Açıklama:
+// - Sorumluluklar ayrıştırıldı
+// - Tek sorumluluk prensibi
+// - Bağımlılıklar azaltıldı
+// - Daha esnek ve test edilebilir kod
+```
+
+
+Uncle Bob'un "Fonksiyonlar" (Functions) başlığı için temel prensipler:
+
+1. Küçük Fonksiyonlar
+2. Tek Sorumluluk İlkesi
+3. Az Parametre
+4. Yan Etki Olmayan Fonksiyonlar
+5. Açıklayıcı İsimler
+6. DRY (Don't Repeat Yourself) Prensibi
+
+Python Örneği:
+
+```python
+# Kötü Örnek
+def process_data(data):
+    result = []
+    for item in data:
+        if item > 10:
+            # Birden fazla sorumluluk
+            new_item = item * 2
+            if new_item % 2 == 0:
+                result.append(new_item)
+    return result
+
+# İyi Örnek
+def is_large_number(number, threshold=10):
+    """Sayının belirli bir eşikten büyük olup olmadığını kontrol eder."""
+    return number > threshold
+
+def double_number(number):
+    """Sayıyı ikiye katlar."""
+    return number * 2
+
+def is_even(number):
+    """Sayının çift olup olmadığını kontrol eder."""
+    return number % 2 == 0
+
+def filter_and_transform_numbers(numbers):
+    """
+    Sayıları filtreler ve dönüştürür.
+    
+    Args:
+        numbers (list): İşlenecek sayı listesi
+    
+    Returns:
+        list: Dönüştürülmüş sayılar
+    """
+    return [
+        double_number(num) 
+        for num in numbers 
+        if is_large_number(num) and is_even(double_number(num))
+    ]
+```
+
+Java Örneği:
+
+```java
+// Kötü Örnek
+public class DataProcessor {
+    public List<String> processUserData(List<User> users) {
+        List<String> result = new ArrayList<>();
+        for (User user : users) {
+            // Çok fazla sorumluluk
+            if (user.getAge() > 18) {
+                String processedName = user.getName().toUpperCase();
+                if (processedName.length() > 3) {
+                    result.add(processedName);
+                }
+            }
+        }
+        return result;
+    }
+}
+
+// İyi Örnek
+public class UserProcessor {
+    public boolean isAdult(User user) {
+        return user.getAge() > 18;
+    }
+    
+    public boolean isValidName(String name) {
+        return name != null && name.length() > 3;
+    }
+    
+    public String normalizeName(String name) {
+        return name.toUpperCase();
+    }
+    
+    public List<String> filterAndTransformUsers(List<User> users) {
+        return users.stream()
+            .filter(this::isAdult)
+            .map(User::getName)
+            .map(this::normalizeName)
+            .filter(this::isValidName)
+            .collect(Collectors.toList());
+    }
+}
+```
+
+JavaScript Örneği:
+
+```javascript
+// Kötü Örnek
+function processOrderData(orders) {
+    let total = 0;
+    let discountedOrders = 0;
+    
+    for (let order of orders) {
+        // Çoklu sorumluluk
+        if (order.price > 100) {
+            total += order.price;
+            if (order.price > 500) {
+                discountedOrders++;
+            }
+        }
+    }
+    
+    return {
+        total,
+        discountedOrders
+    };
+}
+
+// İyi Örnek
+class OrderProcessor {
+    static isHighValueOrder(order, threshold = 100) {
+        return order.price > threshold;
+    }
+    
+    static isEligibleForDiscount(order, discountThreshold = 500) {
+        return order.price > discountThreshold;
+    }
+    
+    static calculateOrderTotal(orders, threshold = 100) {
+        return orders
+            .filter(order => this.isHighValueOrder(order, threshold))
+            .reduce((total, order) => total + order.price, 0);
+    }
+    
+    static countDiscountedOrders(orders, discountThreshold = 500) {
+        return orders
+            .filter(order => this.isEligibleForDiscount(order, discountThreshold))
+            .length;
+    }
+    
+    static processOrderData(orders) {
+        return {
+            total: this.calculateOrderTotal(orders),
+            discountedOrders: this.countDiscountedOrders(orders)
+        };
+    }
+}
+```
+
+Temel Prensipler:
+1. Her fonksiyon tek bir işi yapmalı
+2. Fonksiyonlar küçük olmalı
+3. Parametre sayısı minimize edilmeli
+4. Fonksiyon isimleri açıklayıcı olmalı
+5. Yan etkilerden kaçınılmalı
+6. Kodun okunabilirliği ve bakımı ön planda tutulmalı
+
+İş Görüşmesi Sorusu Örneği:
+```javascript
+// Soru: Bu fonksiyonu Uncle Bob'un fonksiyon prensipleri açısından nasıl geliştirebilirsiniz?
+function process(d, t) {
+    let r = 0;
+    for (let i of d) {
+        if (i > t) {
+            r += i;
+        }
+    }
+    return r;
+}
+
+// Beklenen Gelişmiş Çözüm
+function calculateTotalAboveThreshold(dataList, threshold) {
+    return dataList
+        .filter(item => item > threshold)
+        .reduce((total, item) => total + item, 0);
+}
+```
+
+### Fonksiyonlar
+
+Uncle Bob'un "Fonksiyonlar" (Functions) başlığı için temel prensipler:
+
+1. Küçük Fonksiyonlar
+2. Tek Sorumluluk İlkesi
+3. Az Parametre
+4. Yan Etki Olmayan Fonksiyonlar
+5. Açıklayıcı İsimler
+6. DRY (Don't Repeat Yourself) Prensibi
+
+Aşağıda Clean Code ve fonksiyonel programlama prensiplerini test eden ve iş görüşmelerinde kullanılabilecek kod sorularını hazırladım:
+
+1. Pure Function Sorusu (Java):
+```java
+public class UserUtils {
+    private static List<String> activeUsers = new ArrayList<>();
+
+    public static void addUser(String username) {
+        // Problematik kod: Global state'i değiştiriyor
+        activeUsers.add(username);
+    }
+
+    public static List<String> getActiveUsers() {
+        return activeUsers;
+    }
+}
+```
+
+**Beklenen Düzeltme ve Açıklama:**
+```java
+public class UserUtils {
+    // Pure function haline getirme
+    public static List<String> addUser(List<String> currentUsers, String username) {
+        // Yeni bir liste oluşturarak immutability sağlanır
+        List<String> updatedUsers = new ArrayList<>(currentUsers);
+        updatedUsers.add(username);
+        return updatedUsers;
+    }
+}
+```
+
+**Açıklama:**
+- Orijinal kod yan etki içeriyordu (global state'i değiştiriyordu)
+- Düzeltilmiş versiyon:
+  - Yan etki ortadan kaldırıldı
+  - Immutability prensibi uygulandı
+  - Fonksiyon girdi olarak aldığı listeyi değiştirmez
+  - Her çağrıda aynı girdi için aynı çıktıyı üretir
+
+2. High Order Function Sorusu (JavaScript):
+```javascript
+function processNumbers(numbers) {
+    // Problematik kod: Sabit bir işlem yapılıyor
+    const results = [];
+    for (let num of numbers) {
+        results.push(num * 2);
+    }
+    return results;
+}
+```
+
+**Beklenen Düzeltme:**
+```javascript
+function processNumbers(numbers, transformFunction) {
+    // High Order Function ile esnek işlem yapma
+    return numbers.map(transformFunction);
+}
+
+// Kullanım örneği
+const doubledNumbers = processNumbers([1, 2, 3, 4], x => x * 2);
+const squaredNumbers = processNumbers([1, 2, 3, 4], x => x ** 2);
+```
+
+**Açıklama:**
+- Orijinal kod sadece çarpma işlemi yapabiliyordu
+- Düzeltilmiş versiyon:
+  - İşlem fonksiyonu parametre olarak alınır
+  - Daha esnek ve yeniden kullanılabilir
+  - Farklı dönüşümler kolaylıkla uygulanabilir
+
+3. Immutability Sorusu (Python):
+```python
+def update_student_grades(students):
+    # Problematik kod: Orijinal listeyi doğrudan değiştirir
+    for student in students:
+        student['grade'] += 5
+    return students
+```
+
+**Beklenen Düzeltme:**
+```python
+def update_student_grades(students):
+    # Yeni bir liste oluşturarak immutability sağlanır
+    return [
+        {**student, 'grade': student['grade'] + 5} 
+        for student in students
+    ]
+```
+
+**Açıklama:**
+- Orijinal kod girdi listesini doğrudan değiştirir
+- Düzeltilmiş versiyon:
+  - Spread operatörü ile yeni bir liste oluşturulur
+  - Orijinal veri korunur
+  - Fonksiyonel programlama prensipleri uygulanır
+
+4. Composition ve Pure Function Sorusu (Java):
+```java
+public class DataProcessor {
+    public static String processData(String input) {
+        // Çoklu sorumluluk ve yan etki içeren kod
+        System.out.println("Processing: " + input);  // Yan etki
+        return input.toUpperCase().trim();
+    }
+}
+```
+
+**Beklenen Düzeltme:**
+```java
+public class DataProcessor {
+    public static String normalizeInput(String input) {
+        return input.trim();
+    }
+    
+    public static String transformToUppercase(String input) {
+        return input.toUpperCase();
+    }
+    
+    public static void logProcessing(String input) {
+        // Logging ayrı bir sorumluluk olarak
+        System.out.println("Processing: " + input);
+    }
+    
+    // Fonksiyon kompozisyonu
+    public static String processData(String input) {
+        String normalized = normalizeInput(input);
+        String transformed = transformToUppercase(normalized);
+        logProcessing(transformed);
+        return transformed;
+    }
+}
+```
+
+**Açıklama:**
+- Sorumluluklar ayrıştırıldı
+- Her fonksiyon tek bir iş yapar
+- Yan etkiler minimize edildi
+- Fonksiyon kompozisyonu uygulandı
+
+Bu sorular, adaylara:
+- Fonksiyonel programlama prensiplerini anlama
+- Clean Code prensiplerine uygun kod yazma
+- Yan etkileri minimize etme
+- Esnek ve yeniden kullanılabilir kod yazma yeteneklerini test eder
+
+Her sorunun çözümü, yazılım geliştirmede modern yaklaşımların önemini vurgular: modülerlik, öngörülebilirlik ve bakım kolaylığı.
+
+
+Python Örneği:
+
+```python
+# Kötü Örnek
+def process_data(data):
+    result = []
+    for item in data:
+        if item > 10:
+            # Birden fazla sorumluluk
+            new_item = item * 2
+            if new_item % 2 == 0:
+                result.append(new_item)
+    return result
+
+# İyi Örnek
+def is_large_number(number, threshold=10):
+    """Sayının belirli bir eşikten büyük olup olmadığını kontrol eder."""
+    return number > threshold
+
+def double_number(number):
+    """Sayıyı ikiye katlar."""
+    return number * 2
+
+def is_even(number):
+    """Sayının çift olup olmadığını kontrol eder."""
+    return number % 2 == 0
+
+def filter_and_transform_numbers(numbers):
+    """
+    Sayıları filtreler ve dönüştürür.
+    
+    Args:
+        numbers (list): İşlenecek sayı listesi
+    
+    Returns:
+        list: Dönüştürülmüş sayılar
+    """
+    return [
+        double_number(num) 
+        for num in numbers 
+        if is_large_number(num) and is_even(double_number(num))
+    ]
+```
+
+Java Örneği:
+
+```java
+// Kötü Örnek
+public class DataProcessor {
+    public List<String> processUserData(List<User> users) {
+        List<String> result = new ArrayList<>();
+        for (User user : users) {
+            // Çok fazla sorumluluk
+            if (user.getAge() > 18) {
+                String processedName = user.getName().toUpperCase();
+                if (processedName.length() > 3) {
+                    result.add(processedName);
+                }
+            }
+        }
+        return result;
+    }
+}
+
+// İyi Örnek
+public class UserProcessor {
+    public boolean isAdult(User user) {
+        return user.getAge() > 18;
+    }
+    
+    public boolean isValidName(String name) {
+        return name != null && name.length() > 3;
+    }
+    
+    public String normalizeName(String name) {
+        return name.toUpperCase();
+    }
+    
+    public List<String> filterAndTransformUsers(List<User> users) {
+        return users.stream()
+            .filter(this::isAdult)
+            .map(User::getName)
+            .map(this::normalizeName)
+            .filter(this::isValidName)
+            .collect(Collectors.toList());
+    }
+}
+```
+
+JavaScript Örneği:
+
+```javascript
+// Kötü Örnek
+function processOrderData(orders) {
+    let total = 0;
+    let discountedOrders = 0;
+    
+    for (let order of orders) {
+        // Çoklu sorumluluk
+        if (order.price > 100) {
+            total += order.price;
+            if (order.price > 500) {
+                discountedOrders++;
+            }
+        }
+    }
+    
+    return {
+        total,
+        discountedOrders
+    };
+}
+
+// İyi Örnek
+class OrderProcessor {
+    static isHighValueOrder(order, threshold = 100) {
+        return order.price > threshold;
+    }
+    
+    static isEligibleForDiscount(order, discountThreshold = 500) {
+        return order.price > discountThreshold;
+    }
+    
+    static calculateOrderTotal(orders, threshold = 100) {
+        return orders
+            .filter(order => this.isHighValueOrder(order, threshold))
+            .reduce((total, order) => total + order.price, 0);
+    }
+    
+    static countDiscountedOrders(orders, discountThreshold = 500) {
+        return orders
+            .filter(order => this.isEligibleForDiscount(order, discountThreshold))
+            .length;
+    }
+    
+    static processOrderData(orders) {
+        return {
+            total: this.calculateOrderTotal(orders),
+            discountedOrders: this.countDiscountedOrders(orders)
+        };
+    }
+}
+```
+
+Temel Prensipler:
+1. Her fonksiyon tek bir işi yapmalı
+2. Fonksiyonlar küçük olmalı
+3. Parametre sayısı minimize edilmeli
+4. Fonksiyon isimleri açıklayıcı olmalı
+5. Yan etkilerden kaçınılmalı
+6. Kodun okunabilirliği ve bakımı ön planda tutulmalı
+
+İş Görüşmesi Sorusu Örneği:
+```javascript
+// Soru: Bu fonksiyonu Uncle Bob'un fonksiyon prensipleri açısından nasıl geliştirebilirsiniz?
+function process(d, t) {
+    let r = 0;
+    for (let i of d) {
+        if (i > t) {
+            r += i;
+        }
+    }
+    return r;
+}
+
+// Beklenen Gelişmiş Çözüm
+function calculateTotalAboveThreshold(dataList, threshold) {
+    return dataList
+        .filter(item => item > threshold)
+        .reduce((total, item) => total + item, 0);
+}
+```
