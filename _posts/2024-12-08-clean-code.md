@@ -148,9 +148,10 @@ class CustomerAddress:
         self.city_name = city
 ```
 
-İş Görüşme Sorusu Örnekleri:
+**Örnekler:**
 
 1. Değişken İsimlendirme Sorusu:
+
 ```python
 # Verilen kod parçasını daha anlaşılır ve açıklayıcı şekilde yeniden düzenleyin
 def process(d, t):
@@ -176,6 +177,7 @@ def process(d, t):
 ```
 
 2. Metot İsimlendirme Sorusu:
+
 ```python
 # Aşağıdaki metodu daha açıklayıcı ve amacını net bir şekilde belirten 
 # bir isimlendirmeyle yeniden yazın
@@ -193,6 +195,7 @@ def check(s):
 ```
 
 3. Sınıf İsimlendirme Sorusu:
+
 ```python
 # Aşağıdaki sınıfı daha anlamlı ve açıklayıcı bir şekilde yeniden düzenleyin
 class X:
@@ -245,6 +248,7 @@ public class UserValidator {
 JavaScript için "Anlamlı İsimler" başlığında, modern JS özelliklerini ve temiz kod prensiplerini yansıtan iş görüşmesi soruları hazırlıyorum:
 
 1. Giriş Seviye JavaScript Sorusu:
+
 ```javascript
 // Eski versiyondaki kodu modern JavaScript ve temiz kod prensipleriyle yeniden yazın
 function x(a) {
@@ -265,6 +269,7 @@ const isValidEmailAddress = (emailAddress) => {
 ```
 
 2. Orta Seviye JavaScript Sorusu:
+
 ```javascript
 // Karmaşık nesne işlemlerini modern JavaScript özellikleriyle iyileştirin
 function p(d) {
@@ -294,6 +299,7 @@ const processHighValueItems = (dataList) => {
 ```
 
 3. İleri Seviye JavaScript Sorusu:
+
 ```javascript
 // Karmaşık nesne yönetimini modern JS özellikleriyle geliştirin
 class U {
@@ -341,6 +347,7 @@ class UserProfile {
 ```
 
 4. Dekoratör ve Gelişmiş Tip Kontrollü Örnek:
+
 ```javascript
 // Deneysel Dekoratör Örneği (Stage 3 Proposal)
 function logMethod(target, name, descriptor) {
@@ -1124,6 +1131,7 @@ def kullanici_ekle_ve_isle(kullanicilar, yeni_kullanici):
 ```
 
 #### Kullanım:
+
 ```python
 kullanicilar = []
 yeni_kullanici = {"isim": "Ali", "email": "ali@example.com"}
@@ -1202,6 +1210,7 @@ Aşağıdaki sorular:
 - Esnek ve yeniden kullanılabilir kod yazma yeteneklerini test eder
 
 1. Pure Function Sorusu (Java):
+
 ```java
 public class UserUtils {
     private static List<String> activeUsers = new ArrayList<>();
@@ -1218,6 +1227,7 @@ public class UserUtils {
 ```
 
 **Beklenen Düzeltme ve Açıklama:**
+
 ```java
 public class UserUtils {
     // Pure function haline getirme
@@ -1239,6 +1249,7 @@ public class UserUtils {
   - Her çağrıda aynı girdi için aynı çıktıyı üretir
 
 2. High Order Function Sorusu (JavaScript):
+
 ```javascript
 function processNumbers(numbers) {
     // Problematik kod: Sabit bir işlem yapılıyor
@@ -1251,6 +1262,7 @@ function processNumbers(numbers) {
 ```
 
 **Beklenen Düzeltme:**
+
 ```javascript
 function processNumbers(numbers, transformFunction) {
     // High Order Function ile esnek işlem yapma
@@ -1270,6 +1282,7 @@ const squaredNumbers = processNumbers([1, 2, 3, 4], x => x ** 2);
   - Farklı dönüşümler kolaylıkla uygulanabilir
 
 3. Immutability Sorusu (Python):
+
 ```python
 def update_student_grades(students):
     # Problematik kod: Orijinal listeyi doğrudan değiştirir
@@ -1279,6 +1292,7 @@ def update_student_grades(students):
 ```
 
 **Beklenen Düzeltme:**
+
 ```python
 def update_student_grades(students):
     # Yeni bir liste oluşturarak immutability sağlanır
@@ -1296,6 +1310,7 @@ def update_student_grades(students):
   - Fonksiyonel programlama prensipleri uygulanır
 
 4. Composition ve Pure Function Sorusu (Java):
+
 ```java
 public class DataProcessor {
     public static String processData(String input) {
@@ -1307,6 +1322,7 @@ public class DataProcessor {
 ```
 
 **Beklenen Düzeltme:**
+
 ```java
 public class DataProcessor {
     public static String normalizeInput(String input) {
