@@ -544,127 +544,127 @@ JavaScript için Kod Kokusu örnekleri:
 
 1. Uzun ve Karmaşık Metot Kokusu:
 
-```javascript
-// Kod Kokusu Örneği:
-function processUserData(userData) {
-    let result = {};
-    
-    // Çok fazla sorumluluk
-    if (userData && userData.name) {
-        result.name = userData.name.toUpperCase();
+    ```javascript
+    // Kod Kokusu Örneği:
+    function processUserData(userData) {
+        let result = {};
         
-        if (userData.age && userData.age > 18) {
-            result.isAdult = true;
+        // Çok fazla sorumluluk
+        if (userData && userData.name) {
+            result.name = userData.name.toUpperCase();
             
-            if (userData.email && userData.email.includes('@')) {
-                result.email = userData.email;
+            if (userData.age && userData.age > 18) {
+                result.isAdult = true;
                 
-                // Daha fazla karmaşık kontrol
-                if (userData.subscription) {
-                    result.hasSubscription = true;
-                    // ... daha fazla kontrol
+                if (userData.email && userData.email.includes('@')) {
+                    result.email = userData.email;
+                    
+                    // Daha fazla karmaşık kontrol
+                    if (userData.subscription) {
+                        result.hasSubscription = true;
+                        // ... daha fazla kontrol
+                    }
                 }
             }
         }
-    }
-    
-    return result;
-}
-
-// Temiz Kod Çözümü:
-
-class UserDataProcessor {
-    static validateName(name) {
-        return name && typeof name === 'string';
-    }
-    
-    static isAdult(age) {
-        return age > 18;
-    }
-    
-    static isValidEmail(email) {
-        return email && email.includes('@');
-    }
-    
-    static processUserData(userData) {
-        if (!userData) return {};
         
-        return {
-            name: this.validateName(userData.name) 
-                ? userData.name.toUpperCase() 
-                : null,
-            isAdult: this.isAdult(userData.age),
-            email: this.isValidEmail(userData.email) 
-                ? userData.email 
-                : null,
-            hasSubscription: !!userData.subscription
-        };
+        return result;
     }
-}
 
-// Açıklama:
-// - Sorumlulukları küçük metodlara böldük
-// - Tek sorumluluk prensibi
-// - Daha net ve okunabilir kod
-// - Test edilebilirlik arttı
-```
+    // Temiz Kod Çözümü:
+
+    class UserDataProcessor {
+        static validateName(name) {
+            return name && typeof name === 'string';
+        }
+        
+        static isAdult(age) {
+            return age > 18;
+        }
+        
+        static isValidEmail(email) {
+            return email && email.includes('@');
+        }
+        
+        static processUserData(userData) {
+            if (!userData) return {};
+            
+            return {
+                name: this.validateName(userData.name) 
+                    ? userData.name.toUpperCase() 
+                    : null,
+                isAdult: this.isAdult(userData.age),
+                email: this.isValidEmail(userData.email) 
+                    ? userData.email 
+                    : null,
+                hasSubscription: !!userData.subscription
+            };
+        }
+    }
+
+    // Açıklama:
+    // - Sorumlulukları küçük metodlara böldük
+    // - Tek sorumluluk prensibi
+    // - Daha net ve okunabilir kod
+    // - Test edilebilirlik arttı
+    ```
 
 2. Yinelenen Kod Kokusu:
 
-```javascript
-// Kod Kokusu Örneği:
-function calculateSalesTax(price, state) {
-    let tax = 0;
-    
-    if (state === 'NY') {
-        tax = price * 0.08;
-    } else if (state === 'CA') {
-        tax = price * 0.0725;
-    } else if (state === 'TX') {
-        tax = price * 0.0625;
+    ```javascript
+    // Kod Kokusu Örneği:
+    function calculateSalesTax(price, state) {
+        let tax = 0;
+        
+        if (state === 'NY') {
+            tax = price * 0.08;
+        } else if (state === 'CA') {
+            tax = price * 0.0725;
+        } else if (state === 'TX') {
+            tax = price * 0.0625;
+        }
+        
+        return tax;
     }
-    
-    return tax;
-}
 
-function calculateStateTotalSales(sales, state) {
-    let tax = 0;
-    
-    if (state === 'NY') {
-        tax = sales * 0.08;
-    } else if (state === 'CA') {
-        tax = sales * 0.0725;
-    } else if (state === 'TX') {
-        tax = sales * 0.0625;
+    function calculateStateTotalSales(sales, state) {
+        let tax = 0;
+        
+        if (state === 'NY') {
+            tax = sales * 0.08;
+        } else if (state === 'CA') {
+            tax = sales * 0.0725;
+        } else if (state === 'TX') {
+            tax = sales * 0.0625;
+        }
+        
+        return tax;
     }
-    
-    return tax;
-}
 
-// Temiz Kod Çözümü:
-const TAX_RATES = {
-    NY: 0.08,
-    CA: 0.0725,
-    TX: 0.0625
-};
+    // Temiz Kod Çözümü:
+    const TAX_RATES = {
+        NY: 0.08,
+        CA: 0.0725,
+        TX: 0.0625
+    };
 
-class TaxCalculator {
-    static calculateTax(amount, state) {
-        const taxRate = TAX_RATES[state] || 0;
-        return amount * taxRate;
+    class TaxCalculator {
+        static calculateTax(amount, state) {
+            const taxRate = TAX_RATES[state] || 0;
+            return amount * taxRate;
+        }
+        
+        static calculateStateTotalSales(sales, state) {
+            return this.calculateTax(sales, state);
+        }
     }
-    
-    static calculateStateTotalSales(sales, state) {
-        return this.calculateTax(sales, state);
-    }
-}
 
-// Açıklama:
-// - Yinelenen kod kaldırıldı
-// - Merkezi vergi oranları tanımlandı
-// - Kod tekrarı önlendi
-// - Bakım kolaylığı sağlandı
-```
+    // Açıklama:
+    // - Yinelenen kod kaldırıldı
+    // - Merkezi vergi oranları tanımlandı
+    // - Kod tekrarı önlendi
+    // - Bakım kolaylığı sağlandı
+    ```
 
 3. Büyük ve Karmaşık Sınıf Kokusu:
 
