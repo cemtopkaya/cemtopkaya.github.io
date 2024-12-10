@@ -105,12 +105,14 @@ Anlamlı İsimler (Meaningful Names) başlığını inceleyeceğiz. Bu başlık 
 1. Değişken İsimlendirme:
 
 Kötü Örnek:
+
 ```python
 def calc(a, b, c):
     return a * b + c
 ```
 
 İyi Örnek:
+
 ```python
 def calculate_total_product_price(unit_price, quantity, discount):
     return unit_price * quantity + discount
@@ -119,12 +121,14 @@ def calculate_total_product_price(unit_price, quantity, discount):
 2. Metot İsimlendirme:
 
 Kötü Örnek:
+
 ```python
 def do(x):
     return x > 18
 ```
 
 İyi Örnek:
+
 ```python
 def is_user_adult(user_age):
     return user_age >= 18
@@ -141,6 +145,7 @@ class A:
 ```
 
 İyi Örnek:
+
 ```python
 class CustomerAddress:
     def __init__(self, street, city):
@@ -401,6 +406,7 @@ Uncle Bob'un yorum satırları hakkındaki temel felsefesi şu noktalara dayanı
 Java için bu felsefeyi yansıtan soru ve cevaplar:
 
 1. Mimari ve Açıklayıcı Yorum Sorusu:
+
 ```java
 // Kötü Örnek:
 public class UserService {
@@ -443,6 +449,7 @@ public class UserService {
 ```
 
 2. Kod Kokusu ve Yorum İlişkisi Sorusu:
+
 ```java
 public class DataProcessor {
     // Kötü Örnek:
@@ -482,6 +489,7 @@ public class DataProcessor {
 ```
 
 3. Hukuki ve Açıklayıcı Yorum Örneği:
+
 ```java
 /**
  * Apache Lisans Bildirimi ve Telif Hakkı Yorumu
