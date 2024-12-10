@@ -572,6 +572,7 @@ function processUserData(userData) {
 }
 
 // Temiz Kod Çözümü:
+
 class UserDataProcessor {
     static validateName(name) {
         return name && typeof name === 'string';
