@@ -544,7 +544,7 @@ JavaScript için Kod Kokusu örnekleri:
 
 1. Uzun ve Karmaşık Metot Kokusu:
 
-    ```javascript
+```javascript
     // Kod Kokusu Örneği:
     function processUserData(userData) {
         let result = {};
@@ -607,7 +607,7 @@ JavaScript için Kod Kokusu örnekleri:
     // - Tek sorumluluk prensibi
     // - Daha net ve okunabilir kod
     // - Test edilebilirlik arttı
-    ```
+```
 
 2. Yinelenen Kod Kokusu:
 
