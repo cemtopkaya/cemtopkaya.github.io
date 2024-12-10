@@ -543,6 +543,7 @@ Bazı yaygın Kod Kokusu örnekleri:
 JavaScript için Kod Kokusu örnekleri:
 
 1. Uzun ve Karmaşık Metot Kokusu:
+
 ```javascript
 // Kod Kokusu Örneği:
 function processUserData(userData) {
@@ -608,6 +609,7 @@ class UserDataProcessor {
 ```
 
 2. Yinelenen Kod Kokusu:
+
 ```javascript
 // Kod Kokusu Örneği:
 function calculateSalesTax(price, state) {
@@ -664,6 +666,7 @@ class TaxCalculator {
 ```
 
 3. Büyük ve Karmaşık Sınıf Kokusu:
+
 ```javascript
 // Kod Kokusu Örneği:
 class UserManager {
@@ -918,6 +921,7 @@ Temel Prensipler:
 6. Kodun okunabilirliği ve bakımı ön planda tutulmalı
 
 İş Görüşmesi Sorusu Örneği:
+
 ```javascript
 // Soru: Bu fonksiyonu Uncle Bob'un fonksiyon prensipleri açısından nasıl geliştirebilirsiniz?
 function process(d, t) {
