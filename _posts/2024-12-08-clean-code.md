@@ -542,10 +542,10 @@ Bazı yaygın Kod Kokusu örnekleri:
 
 JavaScript için Kod Kokusu örnekleri:
 
-1. Uzun ve Karmaşık Metot Kokusu:
+1. Kod Kokusu Örneği (Uzun ve Karmaşık Metot):
 
 ```javascript
-    // Kod Kokusu Örneği:
+
     function processUserData(userData) {
         let result = {};
         
